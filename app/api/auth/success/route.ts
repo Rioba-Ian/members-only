@@ -14,16 +14,16 @@ export async function GET() {
 
  const dbUser = await db.select().from(users).where(eq(users.kindeId, user.id));
 
- if (dbUser.length == 0) {
-  await db
-   .insert(users)
-   .values({
-    kindeId: user.id,
-    firstName: user.given_name,
-    lastName: user.family_name,
-    email: user.email,
-   })
-   .returning();
+ if (dbUser.length === 0) {
+  // Optional data validation
+  const validatedUser = {
+   kindeId: user.id,
+   firstName: user.given_name || "",
+   lastName: user.family_name || "",
+   email: user.email || "",
+  };
+
+  await db.insert(users).values(validatedUser).returning();
  }
 
  return NextResponse.redirect(process.env.KINDE_SITE_URL as string);
