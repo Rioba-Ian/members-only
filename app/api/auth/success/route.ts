@@ -9,7 +9,10 @@ export async function GET() {
  const user = await getUser();
 
  if (!user || user == null || !user?.id) {
-  throw new Error("something went wrong in authentication" + user);
+  console.error("User data not available during build for /api/auth/success");
+  // Optionally return a specific response indicating the issue
+  // return NextResponse.json({ message: "User data unavailable" });
+  return NextResponse.redirect(process.env.KINDE_SITE_URL as string);
  }
 
  const dbUser = await db.select().from(users).where(eq(users.kindeId, user.id));
