@@ -27,7 +27,7 @@ export default async function RootLayout({
  console.log(user);
 
  return (
-  <html lang="en">
+  <html lang="en" data-theme="business">
    <body className={inter.className}>
     <nav className="nav container">
      <h1>KindeAuth</h1>
