@@ -7,5 +7,8 @@ const config: Config = {
   "./app/**/*.{js,ts,jsx,tsx,mdx}",
  ],
  plugins: [daisyui],
+ daisyui: {
+  themes: ["business"],
+ },
 };
 export default config;

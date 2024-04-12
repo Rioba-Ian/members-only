@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import {
- RegisterLink,
- LoginLink,
- LogoutLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Navigation from "@/components/Navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
  title: "Members only",
@@ -20,33 +15,11 @@ export default async function RootLayout({
 }: Readonly<{
  children: React.ReactNode;
 }>) {
- const { isAuthenticated, getUser } = getKindeServerSession();
-
- const user = await getUser();
-
- console.log(user);
-
  return (
   <html lang="en" data-theme="business">
-   <body className={inter.className}>
-    <nav className="nav container">
-     <h1>KindeAuth</h1>
-     <div>
-      {!(await isAuthenticated()) ? (
-       <>
-        <LoginLink>Sign in</LoginLink>
-        <RegisterLink>Sign up</RegisterLink>
-       </>
-      ) : (
-       <>
-        <pre className="mt-4 bg-slate-950 text-cyan-200 p-4 font-mono text-sm rounded-sm">
-         {JSON.stringify(user, null, 2)}
-        </pre>
-        <LogoutLink>Sign out</LogoutLink>
-       </>
-      )}
-     </div>
-    </nav>
+   <body className={montserrat.className}>
+    <Navigation />
+    {children}
    </body>
   </html>
  );

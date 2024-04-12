@@ -1,5 +1,11 @@
-import { integer, serial, text, pgTable, pgEnum } from "drizzle-orm/pg-core";
-
+import {
+ integer,
+ serial,
+ text,
+ pgTable,
+ pgEnum,
+ timestamp,
+} from "drizzle-orm/pg-core";
 export const rolesEnum = pgEnum("roles", ["user", "admin"]);
 
 export const users = pgTable("users", {
@@ -16,4 +22,5 @@ export const posts = pgTable("posts", {
  userId: integer("user_id").references(() => users.id),
  title: text("title").notNull(),
  body: text("body").notNull(),
+ createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
 });
