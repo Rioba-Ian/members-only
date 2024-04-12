@@ -16,7 +16,7 @@ export default async function Home() {
   },
  });
 
- console.log(posts);
+ console.log(posts.length);
 
  return (
   <main className="flex min-h-screen flex-col items-center justify-between p-24">

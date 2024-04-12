@@ -1,8 +1,11 @@
 "use client";
+import { User } from "@/types";
 import React from "react";
 
-type UserFromKindeProps = {};
-export default function UserMenuButton({}: UserFromKindeProps) {
+type UserFromKindeProps = {
+ user: User;
+};
+export default function UserMenuButton({ user }: UserFromKindeProps) {
  return (
   <div className="dropdown-end dropdown">
    <label tabIndex={0} className="btn-ghost btn-circle btn">
@@ -25,10 +28,20 @@ export default function UserMenuButton({}: UserFromKindeProps) {
    </label>
    <ul
     tabIndex={0}
-    className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-5 bg-base-100 p-2 shadow"
+    className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-52 bg-base-100 p-2 shadow divider-y divider-info"
    >
     <li>
-     <a>Profile</a>
+     <p className="font-light">Signed in as</p>
+     <strong>{user.email}</strong>
+    </li>
+
+    <li>
+     <p className="font-light">Membership Status</p>
+     <span className="font-bold">{user.role}</span>
+    </li>
+
+    <li>
+     <button className="btn-primary">Become Member</button>
     </li>
    </ul>
   </div>

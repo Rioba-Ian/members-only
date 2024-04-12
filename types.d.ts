@@ -1,4 +1,4 @@
-interface user {
+export interface User {
  id: number;
  firstName: string;
  lastName: string | null;
@@ -14,5 +14,5 @@ export type Post = {
  userId: number | null;
  createdAt: Date | null;
  updatedAt: Date | null;
- user?: user | null;
+ user?: User | null;
 };
