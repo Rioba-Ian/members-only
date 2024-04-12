@@ -8,8 +8,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import UserMenuButton from "./UserMenuButton";
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { eq } from "drizzle-orm";
-import { users } from "@/lib/db/schema";
+import { SquarePen } from "lucide-react";
 
 export default async function Navigation() {
  const { isAuthenticated, getUser } = getKindeServerSession();
@@ -41,7 +40,12 @@ export default async function Navigation() {
       </RegisterLink>
      </div>
     ) : (
-     <div className="flex items-center justify-start">
+     <div className="flex items-center justify-start gap-4">
+      {userDetails && (
+       <Link href="/new">
+        <SquarePen className="text-4xl text-slate-200" />
+       </Link>
+      )}
       <LogoutLink className="bg-accent gap-1.5 text-sm md:text-base rounded-lg px-5 py-2  transition hover:bg-warning  focus:outline-none focus:ring">
        Sign out
       </LogoutLink>
