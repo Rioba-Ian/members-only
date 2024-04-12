@@ -22,6 +22,27 @@
       "when": 1712910619851,
       "tag": "0002_freezing_true_believers",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1712913969479,
+      "tag": "0003_friendly_prodigy",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1712914131120,
+      "tag": "0004_famous_swordsman",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1712914568467,
+      "tag": "0005_youthful_guardian",
+      "breakpoints": true
     }
   ]
 }

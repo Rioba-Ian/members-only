@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
  integer,
  serial,
@@ -6,6 +7,7 @@ import {
  pgEnum,
  timestamp,
 } from "drizzle-orm/pg-core";
+
 export const rolesEnum = pgEnum("roles", ["user", "admin"]);
 
 export const users = pgTable("users", {
@@ -17,10 +19,22 @@ export const users = pgTable("users", {
  role: rolesEnum("role").default("user"),
 });
 
+export const userRelations = relations(users, ({ many }) => ({
+ posts: many(posts),
+}));
+
 export const posts = pgTable("posts", {
  id: serial("id").primaryKey(),
- userId: integer("user_id").references(() => users.id),
+ userId: integer("user_id"),
  title: text("title").notNull(),
  body: text("body").notNull(),
  createdAt: timestamp("created_at", { mode: "date" }).defaultNow(),
+ updatedAt: timestamp("updated_at", { mode: "date" }).defaultNow(),
 });
+
+export const postsRelations = relations(posts, ({ one }) => ({
+ user: one(users, {
+  fields: [posts.userId],
+  references: [users.id],
+ }),
+}));
