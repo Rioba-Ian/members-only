@@ -23,14 +23,14 @@ export default async function Navigation() {
  console.log(userDetails);
 
  return (
-  <nav className="container mx-auto flex justify-between py-3">
+  <nav className="container w-full mx-auto flex flex-col md:flex-row justify-between py-3">
    <Link
     href="/"
-    className="text-3xl md:text-5xl font-bold  md:font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+    className="text-xl md:text-3xl font-bold  md:font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
    >
     Members Only Club
    </Link>
-   <div>
+   <div className="ml-auto">
     {!(await isAuthenticated()) ? (
      <div className="space-x-4">
       <LoginLink className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 px-5 py-1 text-gray-500 transition hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring">
@@ -41,8 +41,8 @@ export default async function Navigation() {
       </RegisterLink>
      </div>
     ) : (
-     <div className="flex flex-col md:flex-row items-center justify-start">
-      <LogoutLink className="bg-accent gap-1.5 rounded-lg px-5 py-2  transition hover:bg-warning  focus:outline-none focus:ring">
+     <div className="flex items-center justify-start">
+      <LogoutLink className="bg-accent gap-1.5 text-sm md:text-base rounded-lg px-5 py-2  transition hover:bg-warning  focus:outline-none focus:ring">
        Sign out
       </LogoutLink>
       {userDetails ? <UserMenuButton user={userDetails} /> : null}

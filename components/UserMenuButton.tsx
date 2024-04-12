@@ -36,12 +36,19 @@ export default function UserMenuButton({ user }: UserFromKindeProps) {
     </li>
 
     <li>
-     <p className="font-light">Membership Status</p>
-     <span className="font-bold">{user.role}</span>
+     <p className="font-light">
+      Membership Status:{" "}
+      <span className=" text-xs badge badge-info font-bold">{user.role}</span>
+     </p>
     </li>
 
     <li>
-     <button className="btn-primary">Become Member</button>
+     {(user.role === "user" || user.role === "admin") && (
+      <button className="btn btn-primary my-2">Become Member</button>
+     )}
+     {user.role === "member" && (
+      <button className="btn btn-primary my-2">Become Admin</button>
+     )}
     </li>
    </ul>
   </div>
