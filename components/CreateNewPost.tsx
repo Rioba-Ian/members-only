@@ -12,8 +12,6 @@ const initialState: ErrorState = {
 export default function CreateNewPost() {
  const [state, formAction] = useFormState(createPost, initialState);
 
- console.log(state);
-
  return (
   <form action={formAction}>
    <fieldset className="space-y-8">
