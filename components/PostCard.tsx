@@ -24,6 +24,7 @@ export default function PostCard({ post, loggedUserDetails }: PostCardProps) {
      </span>
      <span className="ml-2">
       {loggedUserDetails?.id &&
+       loggedUserDetails.role !== "user" &&
        post.createdAt?.toLocaleString("en-US", options)}
      </span>
     </div>
