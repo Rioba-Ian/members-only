@@ -43,6 +43,13 @@
       "when": 1712914568467,
       "tag": "0005_youthful_guardian",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1713183572886,
+      "tag": "0006_serious_gamma_corps",
+      "breakpoints": true
     }
   ]
 }
