@@ -30,11 +30,17 @@ export default function UserMenuButton({ user }: UserFromKindeProps) {
    </label>
    <ul
     tabIndex={0}
-    className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-52 bg-base-100 p-2 shadow divider-y divider-info"
+    className="dropdown-content menu rounded-box menu-sm z-30 mt-3 w-52 md:w-56 bg-base-100 p-2 shadow divider-y divider-info"
    >
     <li>
      <p className="font-light">Signed in as</p>
-     <strong>{user.email}</strong>
+     <p className="whitespace-break-spaces font-bold text-ellipsis overflow-hidden max-w-full">
+      {" "}
+      {user.email.slice(0, 20)}
+      {user.email.length > 20 && "..."}{" "}
+      {/* Optional: Show some additional characters after truncation (adjust limit as needed) */}
+      {user.email.length > 20 && user.email.slice(20, 25)}
+     </p>
     </li>
 
     <li>
