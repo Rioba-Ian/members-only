@@ -1,5 +1,7 @@
 "use client";
 import { User } from "@/types";
+import {} from "next";
+import Link from "next/link";
 import React from "react";
 
 type UserFromKindeProps = {
@@ -44,10 +46,18 @@ export default function UserMenuButton({ user }: UserFromKindeProps) {
 
     <li>
      {(user.role === "user" || user.role === "admin") && (
-      <button className="btn btn-primary my-2">Become Member</button>
+      <Link
+       href={"/become-member"}
+       className="btn btn-primary my-2"
+       //    onClick={() => redirect("/become-member")}
+      >
+       Become Member
+      </Link>
      )}
      {user.role === "member" && (
-      <button className="btn btn-primary my-2">Become Admin</button>
+      <Link className="btn btn-primary my-2" href={"/become-admin"}>
+       Become Admin
+      </Link>
      )}
     </li>
    </ul>

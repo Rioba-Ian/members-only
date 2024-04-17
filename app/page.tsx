@@ -1,9 +1,3 @@
-import Image from "next/image";
-import {
- RegisterLink,
- LoginLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import PostCard from "@/components/PostCard";
 import { db } from "@/lib/db";
 import { getAuthenticatedUser } from "@/utils/user";

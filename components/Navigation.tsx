@@ -8,7 +8,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import UserMenuButton from "./UserMenuButton";
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { SquarePen } from "lucide-react";
+import { SquarePen, Lock, Flame } from "lucide-react";
 
 export default async function Navigation() {
  const { isAuthenticated, getUser } = getKindeServerSession();
@@ -42,9 +42,18 @@ export default async function Navigation() {
     ) : (
      <div className="flex items-center justify-start gap-4">
       {userDetails && (
-       <Link href="/new">
-        <SquarePen className="text-4xl text-slate-200" />
-       </Link>
+       <div className="hidden md:flex items-center gap-12">
+        <Link href="/new" className="flex items-start gap-2">
+         <p>New Post</p> <SquarePen className="text-4xl text-slate-200" />
+        </Link>
+        <Link href={"/become-member"}>
+         Member <Flame className="inline-block" />
+        </Link>
+
+        <Link href={"/become-admin"}>
+         Admin <Lock className="inline-block" />
+        </Link>
+       </div>
       )}
       <LogoutLink className="bg-accent gap-1.5 text-sm md:text-base rounded-lg px-5 py-2  transition hover:bg-warning  focus:outline-none focus:ring">
        Sign out

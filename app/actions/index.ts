@@ -3,8 +3,10 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { posts } from "@/lib/db/schema";
+import { posts, users } from "@/lib/db/schema";
 import { getAuthenticatedUser } from "@/utils/user";
+import { eq } from "drizzle-orm";
+import { MEMBER_PASSCODE } from "@/utils/constants";
 
 export type ErrorState = {
  error?: { title: string | undefined; message?: string | undefined } | null;
@@ -72,6 +74,38 @@ export default async function createPost(
    error: { title: "Failed to create a post", message: "Database error" },
    message: "Failed to create a post",
   };
+ }
+ redirect("/");
+}
+
+export async function upgradeToMember(prevState: any, formData: FormData) {
+ const userDetails = await getAuthenticatedUser();
+
+ if (!userDetails) {
+  return { message: "You are not logged in." };
+ }
+
+ const memberPassword = formData.get("memberpasscode");
+
+ if (!memberPassword) {
+  return { message: "Member passcode is required." };
+ }
+
+ if (memberPassword !== MEMBER_PASSCODE) {
+  return {
+   message:
+    "Wrong Passcode. Check around for hints and try again.\n Check out https://github.com/Rioba-Ian/members-only",
+  };
+ }
+
+ try {
+  const res = await db
+   .update(users)
+   .set({ role: "member" })
+   .where(eq(users.id, userDetails.id));
+  revalidatePath("/");
+ } catch (err) {
+  return { message: "Database error: Failed to update membership." };
  }
  redirect("/");
 }
