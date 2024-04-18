@@ -6,7 +6,7 @@ import { db } from "@/lib/db";
 import { posts, users } from "@/lib/db/schema";
 import { getAuthenticatedUser } from "@/utils/user";
 import { eq } from "drizzle-orm";
-import { MEMBER_PASSCODE } from "@/utils/constants";
+import { ADMIN_PASSCODE, MEMBER_PASSCODE } from "@/utils/constants";
 
 export type ErrorState = {
  error?: { title: string | undefined; message?: string | undefined } | null;
@@ -106,6 +106,38 @@ export async function upgradeToMember(prevState: any, formData: FormData) {
   revalidatePath("/");
  } catch (err) {
   return { message: "Database error: Failed to update membership." };
+ }
+ redirect("/");
+}
+
+export async function upgradeToAdmin(prevState: any, formData: FormData) {
+ const userDetails = await getAuthenticatedUser();
+
+ if (!userDetails) {
+  return { message: "You are not logged in." };
+ }
+
+ const adminPassword = formData.get("adminpasscode");
+
+ if (!adminPassword) {
+  return { message: "Member passcode is required." };
+ }
+
+ if (adminPassword !== ADMIN_PASSCODE) {
+  return {
+   message:
+    "Wrong Passcode. Check around for hints and try again.\n Check out https://github.com/Rioba-Ian/members-only",
+  };
+ }
+
+ try {
+  const res = await db
+   .update(users)
+   .set({ role: "admin" })
+   .where(eq(users.id, userDetails.id));
+  revalidatePath("/");
+ } catch (err) {
+  return { message: "Database error: Failed to update membership to admin." };
  }
  redirect("/");
 }

@@ -34,7 +34,7 @@ export default function BecomeMember() {
       />
 
       {memberState.message && (
-       <span className="block font-light text-red-300 transition-colors">
+       <span className="block font-light text-red-300 transition-colors max-w-full whitespace-pre">
         {memberState.message}
        </span>
       )}

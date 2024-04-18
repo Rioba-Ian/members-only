@@ -1,7 +1,13 @@
+"use client";
 import React from "react";
 import { Lock } from "lucide-react";
+import { useFormState } from "react-dom";
+import { upgradeToAdmin } from "../actions";
 
 export default function BecomeAdmin() {
+ const [adminFormState, adminFormAction] = useFormState(upgradeToAdmin, {
+  message: "",
+ });
  return (
   <main className="flex min-h-screen flex-col items-center justify-start md:justify-center gap-8 p-10 md:p-16">
    <section className="space-y-4">
@@ -16,21 +22,21 @@ export default function BecomeAdmin() {
 
     <p>This time there are no hints.</p>
 
-    <form action=".">
+    <form action={adminFormAction}>
      <fieldset className="space-y-4">
       <input
        type="text"
-       name="memberpasscode"
+       name="adminpasscode"
        placeholder="Admin passcode 🔐"
        required
        className="input input-bordered w-full rounded-xl max-w-xs md:max-w-md focus:border-purple-500"
       />
 
-      {/* {memberState.message && (
+      {adminFormState.message && (
        <span className="block font-light text-red-300 transition-colors">
-        {memberState.message}
+        {adminFormState.message}
        </span>
-      )} */}
+      )}
 
       <button
        type="submit"
