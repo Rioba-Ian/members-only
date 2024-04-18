@@ -49,7 +49,8 @@ export default async function createPost(
    ...prevState,
    error: {
     title: "Unauthorized error",
-    message: "You are not authorized to create a post.",
+    message:
+     "You are not authorized to create a post. Become a member to write a post.",
    },
    message: "Unauthorized error",
   };

@@ -51,7 +51,7 @@ export default function UserMenuButton({ user }: UserFromKindeProps) {
     </li>
 
     <li>
-     {(user.role === "user" || user.role === "admin") && (
+     {user.role === "user" && (
       <Link
        href={"/become-member"}
        className="btn btn-primary my-2"

@@ -45,7 +45,7 @@ export default function CreateNewPost() {
     )}
 
     {state?.error && (
-     <div className="alert alert-error">
+     <div className="alert alert-error  max-w-full whitespace-pre">
       <div className="flex-1">
        <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +62,8 @@ export default function CreateNewPost() {
         />
        </svg>
       </div>
-      <div className="flex-1">
-       <p className="font-bold">{state.error.title}</p>
+      <div className="flex-1 text-neutral-700">
+       <p className="font-bold text-neutral-900">{state.error.title}</p>
        <p>{state.error.message}</p>
       </div>
      </div>
