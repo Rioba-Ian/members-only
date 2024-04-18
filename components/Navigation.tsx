@@ -46,16 +46,23 @@ export default async function Navigation() {
         <Link href="/new" className="flex items-start gap-2">
          <p>New Post</p> <SquarePen className="text-4xl text-slate-200" />
         </Link>
-        <Link href={"/become-member"}>
-         Member <Flame className="inline-block" />
-        </Link>
+
+        <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+         <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+         <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+          <Link href={"/become-member"}>
+           Member <Flame className="inline-block" />
+          </Link>
+         </span>
+        </button>
 
         <Link href={"/become-admin"}>
-         Admin <Lock className="inline-block" />
+         Admin{" "}
+         <Lock className="inline-block text-purple-500 hover:text-white" />
         </Link>
        </div>
       )}
-      <LogoutLink className="bg-accent gap-1.5 text-sm md:text-base rounded-lg px-5 py-2  transition hover:bg-warning  focus:outline-none focus:ring">
+      <LogoutLink className="bg-[#c86300] gap-1.5 text-sm md:text-base rounded-lg px-5 py-2  transition hover:bg-[#dd8400]  focus:outline-none focus:ring">
        Sign out
       </LogoutLink>
       {userDetails ? <UserMenuButton user={userDetails} /> : null}

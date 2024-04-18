@@ -3,11 +3,13 @@ import React from "react";
 import { Lock } from "lucide-react";
 import { useFormState } from "react-dom";
 import { upgradeToAdmin } from "../actions";
+import { getAuthenticatedUser } from "@/utils/user";
 
 export default function BecomeAdmin() {
  const [adminFormState, adminFormAction] = useFormState(upgradeToAdmin, {
   message: "",
  });
+
  return (
   <main className="flex min-h-screen flex-col items-center justify-start md:justify-center gap-8 p-10 md:p-16">
    <section className="space-y-4">
@@ -33,7 +35,7 @@ export default function BecomeAdmin() {
       />
 
       {adminFormState.message && (
-       <span className="block font-light text-red-300 transition-colors">
+       <span className="block font-light text-red-300 transition-colors max-w-full whitespace-pre">
         {adminFormState.message}
        </span>
       )}

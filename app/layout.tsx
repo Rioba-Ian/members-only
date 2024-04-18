@@ -17,7 +17,7 @@ export default async function RootLayout({
  children: React.ReactNode;
 }>) {
  return (
-  <html lang="en" data-theme="business">
+  <html lang="en" data-theme="mytheme">
    <body className={montserrat.className}>
     <Navigation />
     {children}
