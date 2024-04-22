@@ -17,9 +17,6 @@ export default async function Navigation() {
  const userDetails = await db.query.users.findFirst({
   where: (users, { eq }) => eq(users.kindeId, user?.id || ""),
  });
- console.log(user);
-
- console.log(userDetails);
 
  return (
   <nav className="container w-full mx-auto flex flex-col md:flex-row justify-between py-3">

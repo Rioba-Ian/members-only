@@ -56,10 +56,6 @@ export default async function createPost(
   };
  }
 
- console.log("create a post here...");
-
- console.log(userDetails);
-
  try {
   const res = await db.insert(posts).values({
    title: data.title,
@@ -67,7 +63,6 @@ export default async function createPost(
    userId: userDetails.id,
   });
 
-  console.log(data);
   revalidatePath("/");
  } catch (err) {
   return {
@@ -140,5 +135,16 @@ export async function upgradeToAdmin(prevState: any, formData: FormData) {
  } catch (err) {
   return { message: "Database error: Failed to update membership to admin." };
  }
+ redirect("/");
+}
+
+export async function deleteComment(id: number) {
+ try {
+  const res = await db.delete(posts).where(eq(posts.id, id));
+  revalidatePath("/");
+ } catch (err) {
+  return "An Error occured.";
+ }
+
  redirect("/");
 }

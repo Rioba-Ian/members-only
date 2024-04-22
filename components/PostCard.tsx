@@ -1,5 +1,6 @@
 import { Post, User } from "@/types";
 import React from "react";
+import DeleteButton from "./DeleteButton";
 
 type PostCardProps = {
  post: Post;
@@ -30,7 +31,7 @@ export default function PostCard({ post, loggedUserDetails }: PostCardProps) {
     </div>
     <p>{post.body}</p>
     <div className="card-actions justify-end">
-     <button className="btn btn-primary">Delete</button>
+     <DeleteButton post={post} loggedUserDetails={loggedUserDetails} />
     </div>
    </div>
   </div>

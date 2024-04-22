@@ -1,6 +1,7 @@
 import PostCard from "@/components/PostCard";
 import { db } from "@/lib/db";
 import { getAuthenticatedUser } from "@/utils/user";
+import { asc, desc } from "drizzle-orm";
 
 export default async function Home() {
  const userDetails = await getAuthenticatedUser();
@@ -9,9 +10,8 @@ export default async function Home() {
   with: {
    user: true,
   },
+  orderBy: (posts, { desc }) => [desc(posts.updatedAt)],
  });
-
- console.log(posts.length);
 
  return (
   <main className="flex min-h-screen flex-col items-center justify-between gap-8 p-24">
